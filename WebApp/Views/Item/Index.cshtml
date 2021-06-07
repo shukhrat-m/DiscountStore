@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Item settings";
+}
+
+<div class="col-8 m-auto">
+    <h1 class="display-4">Manage items</h1>
+    <h3>Add item</h3>
+    <form asp-controller="Item" asp-action="Add" method="post">
+        <input type="text" name="item" value="" />
+        <input type="number" min="0" name="price" value="" />
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+
+    <h3>Remove item</h3>
+    <form asp-controller="Item" asp-action="Remove" method="post">
+        <!-- Input and Submit elements -->
+    </form>
+</div>

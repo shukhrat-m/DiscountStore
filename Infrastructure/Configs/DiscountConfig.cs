@@ -14,6 +14,8 @@ namespace Infrastructure.Configs
         public void Configure(EntityTypeBuilder<Discount> builder)
         {
             builder.HasKey(item => item.Id);
+
+            builder.HasMany(item => item.CartItems).WithOne(cartItem => cartItem.Discount).HasForeignKey(cartItem => cartItem.DiscountId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -15,9 +15,11 @@ namespace Infrastructure.Configs
         {
             builder.HasKey(item => item.Id);
 
-            builder.HasMany(item => item.Discounts).WithOne(discount => discount.Item).HasForeignKey(discount => discount.ItemId);
+            builder.HasMany(item => item.Discounts).WithOne(discount => discount.Item).HasForeignKey(discount => discount.ItemId).OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(item => item.Price).HasColumnType("decimal(18,4)");
+
+            builder.HasMany(item => item.CartItems).WithOne(cartItem => cartItem.Item).HasForeignKey(cartItem => cartItem.ItemId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

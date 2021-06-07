@@ -15,7 +15,10 @@ namespace Infrastructure
         }
 
         public DbSet<Item> Items { get; set; }
+
         public DbSet<Discount> Discounts { get; set; }
+
+        public DbSet<CartItem> CartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

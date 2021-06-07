@@ -1,8 +1,38 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model WebApp.Models.CartItemsDTO
+
+@{
+    ViewData["Title"] = "Discount store";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="col-10 m-auto">
+    <h1 class="display-4">Discount store</h1>
+
+    <h3>Cart</h3>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>SKU</td>
+                <td>Price</td>
+                <td>Discount</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (!Model.CartItems.Any())
+            {
+                <tr>
+                    <td colspan="3">Items does not exist yet</td>
+                </tr>
+            }
+
+            @foreach (CartItemDTO item in Model.CartItems)
+            {
+                <tr>
+                    <td>@item.ItemName</td>
+                    <td>@item.Price</td>
+                    <td>@item.Discount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

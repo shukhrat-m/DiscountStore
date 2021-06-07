@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.UnitOfWork
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
-        IRepository<Discount> Discounts { get; }
+        IRepository<Item> ItemRepository { get; }
 
-        IRepository<Item> Items { get; }
+        IRepository<Discount> DiscountRepository { get; }
 
-        int SaveChanges();
+        IRepository<CartItem> CartItemRepository { get; }
+
+        void SaveChanges();
     }
 }

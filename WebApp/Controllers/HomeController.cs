@@ -1,31 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using AutoMapper;
+using Core.Interfaces;
+using Data.Models;
+using Infrastructure.UnitOfWork;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using WebApp.Models;
 
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ICartService _cartService;
+        private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ICartService cartService, IMapper mapper)
         {
-            _logger = logger;
+            _cartService = cartService;
+            _mapper = mapper;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Index(string errorMessage)
         {
-            return View();
-        }
+            CartItemsDTO cartItemsDTO = new CartItemsDTO();
 
-        public IActionResult Privacy()
-        {
-            return View();
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                cartItemsDTO.ErrorMessage = errorMessage;
+            }
+
+            cartItemsDTO.CartItems = _mapper.Map<List<CartItem>, List<CartItemDTO>>(_cartService.GetAll().ToList());
+            return View(cartItemsDTO);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -1,12 +1,19 @@
 ﻿using Data.Models;
+using System.Collections.Generic;
 
 namespace Core.Interfaces
 {
     public interface ICartService
     {
-        void Add(Item item);
-        void Remove(Item item);
+        void Add(CartItem item);
+
+        void Remove(CartItem item);
+        
         double GetTotal();
+
+        ICollection<CartItem> GetAll();
+
+        CartItem GetById(int id);
     }
 
 }

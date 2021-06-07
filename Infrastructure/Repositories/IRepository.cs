@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories
 {
     public interface IRepository<T>
-            where T : class
     {
-        T GetById(int id);
-
-        IQueryable<T> GetAll(params Expression<Func<T, object>>[] includes);
-
-        void Add(T entity);
-
-        void RemoveById(int id);
+        T Add(T entity);
+        T Update(int id, T entity);
+        T Get(int id);
+        ICollection<T> GetAll();
+        ICollection<T> Find(Expression<Func<T, bool>> predicate);
+        void Remove(T entity);
+        void SaveChanges();
     }
 }
