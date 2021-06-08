@@ -11,6 +11,8 @@ namespace WebApp.Models
 
         public ICollection<CartItemDTO> CartItems { get; set; }
 
+        public decimal TotalPrice { get; set; }
+
         public string ErrorMessage { get; set; }
     }
 }

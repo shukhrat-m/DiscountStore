@@ -1,18 +1,51 @@
-﻿@{
-    ViewData["Title"] = "Item settings";
+﻿@model WebApp.Models.ItemsDTO
+
+@{
+    ViewData["Title"] = "Manage items";
 }
 
-<div class="col-8 m-auto">
+<div class="col-10 m-auto">
     <h1 class="display-4">Manage items</h1>
-    <h3>Add item</h3>
-    <form asp-controller="Item" asp-action="Add" method="post">
-        <input type="text" name="item" value="" />
-        <input type="number" min="0" name="price" value="" />
-        <button class="btn btn-primary" type="submit">Add</button>
-    </form>
 
-    <h3>Remove item</h3>
-    <form asp-controller="Item" asp-action="Remove" method="post">
-        <!-- Input and Submit elements -->
-    </form>
+    <h3>Items</h3>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    <div class="d-flex">
+        <a type="button" class="btn btn-primary mr-2" asp-controller="Item" asp-action="Add">Add item</a>
+        <a type="button" class="btn btn-primary mr-2" asp-controller="Item" asp-action="Index">Remove item</a>
+    </div>
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (!Model.Items.Any())
+            {
+                <tr>
+                    <td colspan="3">Items does not exist yet</td>
+                </tr>
+            }
+
+            @foreach (ItemDTO item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+

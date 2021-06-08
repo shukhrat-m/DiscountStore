@@ -8,6 +8,14 @@
     <h1 class="display-4">Discount store</h1>
 
     <h3>Cart</h3>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+
     <table class="table table-hover">
         <thead>
             <tr>
@@ -21,7 +29,7 @@
             @if (!Model.CartItems.Any())
             {
                 <tr>
-                    <td colspan="3">Items does not exist yet</td>
+                    <td colspan="3">Cart is empty</td>
                 </tr>
             }
 
@@ -31,6 +39,13 @@
                     <td>@item.ItemName</td>
                     <td>@item.Price</td>
                     <td>@item.Discount</td>
+                </tr>
+            }
+            @if (Model.CartItems.Any())
+            {
+                <tr>
+                    <td colspan="2"></td>
+                    <td>@Model.TotalPrice</td>
                 </tr>
             }
         </tbody>

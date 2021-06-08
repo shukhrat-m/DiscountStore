@@ -9,11 +9,13 @@ namespace Core.Interfaces
 
         void Remove(CartItem item);
         
-        double GetTotal();
+        decimal GetTotal();
 
         ICollection<CartItem> GetAll();
 
         CartItem GetById(int id);
+
+        void Save();
     }
 
 }

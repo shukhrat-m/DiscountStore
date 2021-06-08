@@ -9,6 +9,8 @@ namespace Infrastructure.Configs
         public void Configure(EntityTypeBuilder<CartItem> builder)
         {
             builder.HasKey(cartItem => cartItem.Id);
+
+            builder.Property(item => item.TotalPrice).HasColumnType("decimal(18,2)");
         }
     }
 }

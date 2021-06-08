@@ -26,6 +26,7 @@ namespace Infrastructure
 
             modelBuilder.ApplyConfiguration(new ItemConfig());
             modelBuilder.ApplyConfiguration(new DiscountConfig());
+            modelBuilder.ApplyConfiguration(new CartItemConfig());
         }
     }
 }

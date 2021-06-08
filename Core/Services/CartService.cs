@@ -3,6 +3,7 @@ using Data.Models;
 using Infrastructure.UnitOfWork;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.Services
 {
@@ -30,15 +31,19 @@ namespace Core.Services
             return _unitOfWork.CartItemRepository.Get(id);
         }
 
-        public double GetTotal()
+        public decimal GetTotal()
         {
-            //TODO:
-            throw new NotImplementedException();
+            return GetAll().Sum(x => x.TotalPrice);
         }
 
         public void Remove(CartItem item)
         {
             _unitOfWork.CartItemRepository.Remove(item);
+        }
+
+        public void Save()
+        {
+            _unitOfWork.SaveChanges();
         }
     }
 }

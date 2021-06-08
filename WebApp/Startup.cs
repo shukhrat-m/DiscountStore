@@ -31,6 +31,8 @@ namespace WebApp
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(_config.GetConnectionString("DiscountStore")));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<IDiscountService, DiscountService>();
             services.AddAutoMapper(typeof(Startup));
         }
 

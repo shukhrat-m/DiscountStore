@@ -1,26 +1,25 @@
 ﻿using System.Collections.Generic;
 
-namespace Data.Models
+namespace WebApp.Models
 {
-    public class Discount
+    public class DiscountDTO
     {
-        public Discount()
+        public DiscountDTO()
         {
-            CartItems = new HashSet<CartItem>();
+            Items = new Dictionary<int, string>();
         }
 
         public int Id { get; set; }
 
         public int Count { get; set; }
-        
+
         public double DiscountPercent { get; set; }
 
         public int ItemId { get; set; }
 
         public string ItemName { get; set; }
-        
-        public Item Item { get; set; }
 
-        public virtual ICollection<CartItem> CartItems { get; set; }
+        public Dictionary<int, string> Items { get; set; }
+
     }
 }
